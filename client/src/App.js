@@ -37,7 +37,8 @@ function App() {
         It should take the parent around ${minutes} minutes to read the story. 
         The main character is ${character}. The hidden moral of the story will be ${moral}. 
         Always conclude the Story with "The End".
-        Return the content formatted in HTML, rather than plain text. \n\n 
+        Return the content formatted in HTML, rather than plain text.
+        Each Story should have a short title at the start in H2. \n\n 
       `;
     try {
       const res = await axios.post('http://localhost:5000/create-story', { prompt });

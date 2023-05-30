@@ -18,7 +18,7 @@ app.post('/create-story', async (req, res) => {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: prompt,
-      max_tokens: 1000, // Adjust as needed
+      max_tokens: 3000, // Adjust as needed
     });
     res.json({ story: completion.data.choices[0].text });
   } catch (error) {
