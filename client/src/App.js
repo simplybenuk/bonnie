@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import { Grid, Container, Typography, Card, CardContent } from '@mui/material';
+import { AppBar, Grid, Container, Toolbar, Typography, Card, CardContent } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './App.css';
 
@@ -51,75 +51,100 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <Grid container direction="column" spacing={2}>
-          <Grid item>
+      <header>
+        <AppBar position='static'>
+          <Toolbar>
+            <Typography variant="h6">
+              Bonnie
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </header>
+      <main>
+        <section class='intro'>
+          <Container maxWidth='sm' align='center'>
             <Typography variant="h1">Bonnie</Typography>
-            <Typography variant="h3">Your Bedtime Story Companion</Typography>
+            <Typography variant="p">
+              Welcome to Bonnie, your digital bedtime story companion. 
+              Bonnie is designed to make bedtime stories more engaging, creative, and personalized for your little ones. 
+              With Bonnie, you can quickly craft unique tales tailored to your child's interests and imagination. 
+              Whether it's an adventure in a magical kingdom or a journey through the stars, 
+              Bonnie helps you transform bedtime into an unforgettable storytelling experience. 
+              Unlock the world of imagination with Bonnie, and make each night a special memory for your child.
+            </Typography>
+          </Container>
+        </section>
+        <section className='story-form'>
+          <Container maxWidth='sm'>
+            <label htmlFor="character">Describe the main character:</label>
 
-            {/* Replace the above line with your logo */}
-          </Grid>
-          <Grid item>
-          <label htmlFor="character">Describe the main character:</label>
-          <TextField
-            value={character}
-            onChange={e => setCharacter(e.target.value)}
-            label="Character" // Display label for the TextField
-            variant="outlined" // Outlined style
-          />
-          </Grid>
-          <Grid item>
-          <label htmlFor="minutes">Length of the story (in minutes):</label>
-          <Slider
-            aria-label="Minutes"
-            defaultValue={2}
-            value={minutes}
-            valueLabelDisplay="auto"
-            step={1}
-            marks
-            min={1}
-            max={5}
-            onChange={(e, value) => setMinutes(value)}
-          />
-          </Grid>
-          <Grid item>
-          <label htmlFor="age">Age of the child:</label>
-          <FormControl variant="outlined">
-            <InputLabel id="age-label">Years</InputLabel>
-            <Select
-              labelId="age-label"
-              id="age"
-              value={age}
-              onChange={e => setAge(e.target.value)}
-              label="Age of the child"
-            >
-              <MenuItem value={"Under 1"}>Under 1</MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-              <MenuItem value={8}>8</MenuItem>
-              <MenuItem value={9}>9+</MenuItem>
-            </Select>
-          </FormControl>
-          </Grid>
-          <Grid item>
-          <label htmlFor="moral">Moral of the story:</label>
-          <TextField
-            value={moral}
-            onChange={e => setMoral(e.target.value)}
-            label="Moral of Story" // Display label for the TextField
-            variant="outlined" // Outlined style
-          />
-          </Grid>
-          <Grid item>
-            <Button variant="contained" onClick={createStory}>Create a Story</Button>
-          </Grid>
+            {/* <Grid container direction="column" spacing={2}> */}
+              {/* <Grid item> */}
+              <TextField
+                value={character}
+                onChange={e => setCharacter(e.target.value)}
+                label="Character" // Display label for the TextField
+                variant="outlined" // Outlined style
+              />
+              {/* </Grid> */}
+              {/* <Grid item> */}
+              <label htmlFor="minutes">Length of the story (in minutes):</label>
+              <Slider
+                aria-label="Minutes"
+                defaultValue={2}
+                value={minutes}
+                valueLabelDisplay="auto"
+                step={1}
+                marks
+                min={1}
+                max={5}
+                onChange={(e, value) => setMinutes(value)}
+              />
+              {/* </Grid>
+              <Grid item> */}
+              <label htmlFor="age">Age of the child:</label>
+              <FormControl variant="outlined">
+                <InputLabel id="age-label">Years</InputLabel>
+                <Select
+                  labelId="age-label"
+                  id="age"
+                  value={age}
+                  onChange={e => setAge(e.target.value)}
+                  label="Age of the child"
+                >
+                  <MenuItem value={"Under 1"}>Under 1</MenuItem>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={9}>9+</MenuItem>
+                </Select>
+              </FormControl>
+              {/* </Grid>
+              <Grid item> */}
+              <label htmlFor="moral">Moral of the story:</label>
+              <TextField
+                value={moral}
+                onChange={e => setMoral(e.target.value)}
+                label="Moral of Story" // Display label for the TextField
+                variant="outlined" // Outlined style
+              />
+              {/* </Grid>
+              <Grid item> */}
+                <Button variant="contained" onClick={createStory}>Create a Story</Button>
+              {/* </Grid> */}
 
-          <Grid item>
+              {/* <Grid item>
+              </Grid>
+            </Grid> */}
+          </Container>
+        </section>
+        <section className='story-output'>
+          <Container maxWidth='sm'>
             <Card>
               <CardContent>
                 <Typography variant="body1" paragraph={true} align="left" color="textPrimary">
@@ -127,14 +152,12 @@ function App() {
                 </Typography>        
               </CardContent>
             </Card>
-          </Grid>
-        </Grid>
-      </Container>
+          </Container>
+        </section>
+      </main>
     </ThemeProvider>
   );
 }
 
 export default App;
-
-
 
