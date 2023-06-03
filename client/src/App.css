@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: #333333;
 }
 
 .App-logo {
@@ -38,5 +39,16 @@
 }
 
 .intro {
-  margin: 6.25rem 0;
+  padding: 2rem 0;
+}
+
+.story-form {
+  padding: 1.25rem 0 3.125rem;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.story-output {
+  padding-bottom: 100px;
 }
