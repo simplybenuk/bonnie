@@ -10,6 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import { AppBar, Container, LinearProgress, Toolbar, Typography, Card, CardContent } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
+import TermsModal from './TermsModal';
 
 import './App.css';
 import background from './images/background.png';
@@ -66,6 +67,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <TermsModal />
       {/* <header>
         <AppBar position='static'>
           <Toolbar>
