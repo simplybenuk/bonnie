@@ -51,7 +51,7 @@ function TermsModal() {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button variant="contained" onClick={handleClose} color="secondary">
           Accept
         </Button>
       </DialogActions>
