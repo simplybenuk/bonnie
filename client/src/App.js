@@ -163,7 +163,7 @@ function App() {
                 <CardContent>
                   <Stack spacing={2}>
                     <LinearProgress />
-                    <Typography align="center">Creating your new story...</Typography>
+                    <Typography align="center">Please wait, your story is being created. This will take a little time...</Typography>
                   </Stack>
                 </CardContent>
               </Card>
