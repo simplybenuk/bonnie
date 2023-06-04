@@ -37,7 +37,8 @@ function TermsModal() {
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Please accept the terms before using Bonnie.
+          Bonnie uses OpenAI to generate unique stories for you to read to your child. 
+          Please make sure you review any stories created by Bonnie to make sure you are happy that they are suitable for your child.
         </DialogContentText>
         <FormControlLabel
           control={
