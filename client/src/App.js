@@ -51,8 +51,7 @@ function App() {
         Each Story should have a short title at the start in H2. \n\n 
       `;
     try {
-      const res = await axios.post('/api/create-story', { prompt });
-      // const res = await axios.post('http://localhost:5000/create-story', { prompt });
+      const res = await axios.post('./api/create-story', { prompt });
       setStory(res.data.story);
       setLoading(false);
     } catch (error) {
