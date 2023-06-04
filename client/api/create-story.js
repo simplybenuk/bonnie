@@ -15,18 +15,22 @@ module.exports = async (req, res) => {
       { role: 'user', content: prompt },
     ];
 
-    console.log("Prompt: ", prompt); // Logs the prompt
+    console.log('Sending prompt to OpenAI API: ', prompt);
+    const startTime = Date.now();
 
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: messages,
     });
 
-    console.log("Response from OpenAI API: ", completion); // Logs the response from OpenAI API
+    const endTime = Date.now();
+    console.log('Received response from OpenAI API in ', (endTime - startTime), 'ms');
 
+    console.log('Response from OpenAI API: ', completion.data.choices[0].message.content);
     res.json({ story: completion.data.choices[0].message.content });
   } catch (error) {
-    console.error(error);
+    console.error('Error creating story: ', error);
     res.status(500).json({ error: 'Error creating story' });
   }
 };
+
