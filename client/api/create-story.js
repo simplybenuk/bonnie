@@ -14,10 +14,16 @@ module.exports = async (req, res) => {
       { role: 'system', content: 'You are a skilled writer of stories for children.' },
       { role: 'user', content: prompt },
     ];
+
+    console.log("Prompt: ", prompt); // Logs the prompt
+
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: messages,
     });
+
+    console.log("Response from OpenAI API: ", completion); // Logs the response from OpenAI API
+
     res.json({ story: completion.data.choices[0].message.content });
   } catch (error) {
     console.error(error);
