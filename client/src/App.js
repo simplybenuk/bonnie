@@ -83,13 +83,7 @@ function App() {
           <Container maxWidth='sm' align='center'>
             <Typography variant="h1">Bonnie</Typography>
             <Typography variant="p">
-              Create a bedtime story for your loved one
-              {/* Welcome to Bonnie, your digital bedtime story companion. 
-              Bonnie is designed to make bedtime stories more engaging, creative, and personalized for your little ones. 
-              With Bonnie, you can quickly craft unique tales tailored to your child's interests and imagination. 
-              Whether it's an adventure in a magical kingdom or a journey through the stars, 
-              Bonnie helps you transform bedtime into an unforgettable storytelling experience. 
-              Unlock the world of imagination with Bonnie, and make each night a special memory for your child. */}
+              Bonnie generates unique, AI-powered children's stories. Enjoy a new story every time, perfect for bedtime, playtime, or any time!
             </Typography>
           </Container>
         </section>

@@ -9,7 +9,12 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 function TermsModal() {
-  const [open, setOpen] = useState(true);
+  const getCookieValue = (name) => {
+    let matches = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return matches ? matches.pop() : '';
+  }
+
+  const [open, setOpen] = useState(getCookieValue('dismissModal') !== 'true');
   const [checked, setChecked] = useState(false);
 
   const handleClose = (event, reason) => {
