@@ -7,6 +7,16 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 
 const StoryOutput = ({story, startNewStory}) => {
+    const handleShare = async () => {
+        try {
+            const storyToShare = `${story}\n\nCreated by Bonnie - https://bonniestory.net`;
+            await navigator.clipboard.writeText(storyToShare);
+            alert('Story copied to clipboard');
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    };
+
     return (
         <section class='story-output'>
             <Container maxWidth='sm'>
@@ -19,6 +29,7 @@ const StoryOutput = ({story, startNewStory}) => {
                   </CardContent>
                 </Card>
                 <Button variant="contained" onClick={startNewStory} color="success">Start a New Story</Button>
+                <Button variant="contained" onClick={handleShare} color="secondary">Share this Story</Button>
                 </Stack>
               </Container>
         </section>
@@ -26,3 +37,4 @@ const StoryOutput = ({story, startNewStory}) => {
 }
 
 export default StoryOutput;
+
