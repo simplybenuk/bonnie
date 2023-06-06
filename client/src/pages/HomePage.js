@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { AppBar, Container, Toolbar, Typography, Card, CardContent } from '@mui/material';
+import { AppBar, Box, Container, Toolbar, Typography, Card, CardContent } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TermsModal from '../components/TermsModal';
 import StoryForm from '../components/StoryForm';
 import LoadingStory from '../components/LoadingStory';
 import StoryOutput from '../components/StoryOutput';
-
 import '../App.css';
 import background from '../images/background.png';
+import logo from '../images/android-chrome-512x512.png';
 
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
@@ -50,11 +50,14 @@ const HomePage = () => {
         <main>
           <TermsModal />  
           <section class='intro'>
-            <Container maxWidth='sm' align='center'>
-              <Typography variant="h1">Bonnie</Typography>
-              <Typography variant="p">
-                Bonnie generates unique, AI-powered children's stories. Enjoy a new story every time, perfect for bedtime, playtime, or any time!
-              </Typography>
+            <Container maxWidth='sm'>
+                <Box display="flex" justifyContent="center" alignItems="center" gap={2}>
+                    <img src={logo} alt="Logo" style={{ height: '60px' }} />
+                    <Typography variant="h1">Bonnie</Typography>
+                </Box>
+                <Typography variant="p" align="center">
+                    Bonnie generates unique, AI-powered children's stories. Enjoy a new story every time, perfect for bedtime, playtime, or any time!
+                </Typography>
             </Container>
           </section>
           {showForm ? (
