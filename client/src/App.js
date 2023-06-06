@@ -1,20 +1,14 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import Button from '@mui/material/Button'; // Import Button from Material UI
-import TextField from '@mui/material/TextField';
-import Slider from '@mui/material/Slider';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import { AppBar, Container, LinearProgress, Toolbar, Typography, Card, CardContent } from '@mui/material';
+import { AppBar, Container, Toolbar, Typography, Card, CardContent } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Stack from '@mui/material/Stack';
-import TermsModal from './TermsModal';
+import TermsModal from './components/TermsModal';
+import StoryForm from './components/StoryForm';
+import LoadingStory from './components/LoadingStory';
+import StoryOutput from './components/StoryOutput';
 
 import './App.css';
 import background from './images/background.png';
-
 
 const theme = createTheme({
   palette: {
@@ -52,7 +46,6 @@ function App() {
       `;
     try {
       const res = await axios.post('/api/create-story', { prompt });
-      // const res = await axios.post('http://localhost:5000/create-story', { prompt });
       setStory(res.data.story);
       setLoading(false);
     } catch (error) {
@@ -69,15 +62,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <TermsModal />
-      {/* <header>
-        <AppBar position='static'>
-          <Toolbar>
-            <Typography variant="h6">
-              Bonnie
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </header> */}
       <main>
         <section class='intro'>
           <Container maxWidth='sm' align='center'>
@@ -87,104 +71,33 @@ function App() {
             </Typography>
           </Container>
         </section>
-        {showForm && (
-          <section class='story-form'>
-            <Container maxWidth='sm'>
-              <Stack spacing={5}>
-                  <label htmlFor="character">Describe the main character:</label>
-                  <TextField
-                    value={character}
-                    onChange={e => setCharacter(e.target.value)}
-                    label="Character" // Display label for the TextField
-                    variant="outlined" // Outlined style
-                    fullWidth="True"
-                    color="success"
-                  />
-                  <label htmlFor="minutes">Length of the story (in minutes):</label>
-                  <Slider
-                    aria-label="Minutes"
-                    defaultValue={2}
-                    value={minutes}
-                    valueLabelDisplay="on"
-                    step={1}
-                    marks
-                    min={1}
-                    max={5}
-                    color="success"
-                    onChange={(e, value) => setMinutes(value)}
-                  />
-                <label htmlFor="age">Age of the child:</label>
-                <FormControl variant="outlined">
-                  <InputLabel id="age-label">Years</InputLabel>
-                  <Select
-                    labelId="age-label"
-                    id="age"
-                    value={age}
-                    onChange={e => setAge(e.target.value)}
-                    label="Age of the child"
-                    color="success"
-
-                  >
-                    <MenuItem value={"Under 1"}>Under 1</MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                    <MenuItem value={6}>6</MenuItem>
-                    <MenuItem value={7}>7</MenuItem>
-                    <MenuItem value={8}>8</MenuItem>
-                    <MenuItem value={9}>9+</MenuItem>
-                  </Select>
-                </FormControl>
-                <label htmlFor="moral">Moral of the story:</label>
-                <TextField
-                  value={moral}
-                  onChange={e => setMoral(e.target.value)}
-                  label="Moral of Story" // Display label for the TextField
-                  variant="outlined" // Outlined style
-                  color="success"
-                />
-                  <Button variant="contained" onClick={createStory} color="success">Create a Story</Button>
-                </Stack>
-            </Container>
-          </section>
-        )}
+        {showForm ? (
+          <StoryForm
+            character={character}
+            setCharacter={setCharacter}
+            minutes={minutes}
+            setMinutes={setMinutes}
+            age={age}
+            setAge={setAge}
+            moral={moral}
+            setMoral={setMoral}
+            createStory={createStory}
+          />
+        ) : null}
         {loading ? (
-          <section class='story-output'>
-            <Container maxWidth='sm'>
-              <Card>
-                <CardContent>
-                  <Stack spacing={2}>
-                    <LinearProgress />
-                    <Typography align="center">Please wait, your story is being created. This will take a little time...</Typography>
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Container>
-          </section>
-        ) : (
-          story && (
-            <section class='story-output'>
-              <Container maxWidth='sm'>
-                <Stack spacing={5}>
-                <Card>
-                  <CardContent>
-                    <Typography variant="body1" paragraph={true} align="left" color="textPrimary">
-                      <div dangerouslySetInnerHTML={{ __html: story }} />
-                    </Typography> 
-                  </CardContent>
-                </Card>
-                <Button variant="contained" onClick={startNewStory} color="success">Start a New Story</Button>
-                </Stack>
-              </Container>
-            </section>
-          )
-        )}
+          <LoadingStory />
+        ) : null}
+        {story ? (
+          <StoryOutput
+            story={story}
+            startNewStory={startNewStory}
+          />
+        ) : null}
       </main>
     </ThemeProvider>
   );
 }
 
 export default App;
+
 
