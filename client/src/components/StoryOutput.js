@@ -9,7 +9,10 @@ import Container from '@mui/material/Container';
 const StoryOutput = ({story, startNewStory}) => {
     const handleShare = async () => {
         try {
-            const storyToShare = `${story}\n\nCreated by Bonnie - https://bonniestory.net`;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(story, 'text/html');
+            const plainTextStory = doc.body.textContent || '';
+            const storyToShare = `${plainTextStory}\n\nCreated by Bonnie - https://bonniestory.net`;
             await navigator.clipboard.writeText(storyToShare);
             alert('Story copied to clipboard');
         } catch (err) {
@@ -37,4 +40,5 @@ const StoryOutput = ({story, startNewStory}) => {
 }
 
 export default StoryOutput;
+
 
