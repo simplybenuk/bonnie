@@ -24,13 +24,15 @@ const HomePage = () => {
       setShowForm(false);
       setLoading(true);
       const prompt = `
-          Create a ${isRhyming ? 'rhyming' : 'normal'} bedtime story designed for a child of age ${age}. 
+          Create a bedtime story designed for a child of age ${age}. 
           The story should take about ${minutes} minutes to read to the child. 
+          ${isRhyming ? 'The story should rhyme.' : ''}
           The main character is ${character}. The hidden moral will be ${moral}. 
           Always conclude the Story with "The End".
           Return the content formatted in HTML. Use paragraph tags to make it easy to read.
-          Each Story should have a short title at the start in H2. \n\n 
-        `;
+          Each Story should have a short title at the start in H2. \n\n         
+      `;
+      console.log("Prompt:", prompt);
       try {
         const res = await axios.post('/api/create-story', { prompt });
         setStory(res.data.story);
