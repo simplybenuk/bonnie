@@ -17,13 +17,14 @@ const HomePage = () => {
     const [minutes, setMinutes] = useState(2);
     const [age, setAge] = useState(2);
     const [moral, setMoral] = useState('to be good');
+    const [isRhyming, setIsRhyming] = useState(false);
     const [showForm, setShowForm] = useState(true);
   
     const createStory = async () => {
       setShowForm(false);
       setLoading(true);
       const prompt = `
-          Create a bedtime story designed for a child of age ${age}. 
+          Create a ${isRhyming ? 'rhyming' : 'normal'} bedtime story designed for a child of age ${age}. 
           The story should take about ${minutes} minutes to read to the child. 
           The main character is ${character}. The hidden moral will be ${moral}. 
           Always conclude the Story with "The End".
@@ -46,10 +47,9 @@ const HomePage = () => {
     }
   
     return (
-        
         <main>
           <TermsModal />  
-          <section class='intro'>
+          <section className='intro'>
             <Container maxWidth='sm'>
                 <Box display="flex" justifyContent="center" alignItems="center" gap={2}>
                     <img src={logo} alt="Logo" style={{ height: '60px' }} />
@@ -70,6 +70,8 @@ const HomePage = () => {
               setAge={setAge}
               moral={moral}
               setMoral={setMoral}
+              isRhyming={isRhyming}
+              setIsRhyming={setIsRhyming}
               createStory={createStory}
             />
           ) : null}
