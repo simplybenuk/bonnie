@@ -11,12 +11,11 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { AppBar, Container, Toolbar, Typography, Card, CardContent } from '@mui/material';
 
-const StoryForm = ({character, setCharacter, minutes, setMinutes, age, setAge, moral, setMoral, createStory}) => {
-    const [isRhyming, setIsRhyming] = useState(false);
-    
-    const toggleRhyming = () => {
-      setIsRhyming(prev => !prev);
-    };
+const StoryForm = ({character, setCharacter, minutes, setMinutes, age, setAge, moral, setMoral, createStory, isRhyming, setIsRhyming}) => {
+
+  const toggleRhyming = () => {
+    setIsRhyming(prev => !prev);
+  };
 
     return (
         <section className='story-form'>
